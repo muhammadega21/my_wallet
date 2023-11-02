@@ -1,0 +1,66 @@
+main {
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+main .left {
+    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
+    margin: auto 0;
+}
+
+main .left .header {
+    text-align: center;
+    height: 80px;
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    position: relative;
+}
+
+main .left .header .loginLogo {
+    width: 120px;
+    margin: 10px auto;
+}
+
+main .left .header .loginLogo img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+main .right {
+    position: relative;
+    overflow: hidden;
+}
+
+main .right .waves .a {
+    display: block;
+    position: absolute;
+    scale: 1.2;
+    transform: rotate(-95deg);
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+}
+main .right .waves .b {
+    position: absolute;
+    transform: rotate(96deg);
+    right: -240px;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+}
+
+main .right .image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+main .right .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
