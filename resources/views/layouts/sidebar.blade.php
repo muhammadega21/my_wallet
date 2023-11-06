@@ -46,11 +46,8 @@
                 <a href=""><i class="bx bxs-group"></i><span>Daftar Teman</span></a>
             </li>
             <span class="layout">SETTING</span>
-            <li>
-                <a href=""><i class="bx bxs-user"></i><span>Profile</span></a>
-            </li>
-            <li>
-                <a href=""><i class="bx bxs-cog"></i><span>Setting</span></a>
+            <li class="{{ Request::is('profile*') ? 'active' : '' }}">
+                <a href="{{ url('profile') }}"><i class="bx bxs-user"></i><span>Profile</span></a>
             </li>
             <li>
                 <a href="{{ url('/logout') }}"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>

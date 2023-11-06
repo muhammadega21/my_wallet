@@ -69,8 +69,16 @@
             {{-- Edit Popoup --}}
             <div class="update-popup w-full md:w-[80%] lg:w-[50%]">
                 <div class="form-input">
-                    <div class="title">
+                    <div class="title flex justify-between">
                         <h4>Update Rekening</h4>
+                        <form id="formDelete" action="{{ url('') }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <div class="btn">
+                                <button id="delete" type="button" class="bg-red-500 !p-0 !px-1.5"><i
+                                        class="bx bxs-trash text-lg"></i></button>
+                            </div>
+                        </form>
                     </div>
                     <form id="formUpdate" action="{{ url('') }}" method="POST">
                         @csrf

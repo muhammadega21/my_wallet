@@ -70,7 +70,7 @@ fetch("/api/wallet")
                     plugins: {
                         title: {
                             display: true,
-                            text: "Riwayat Perbulan",
+                            text: `Riwayat Tahun ${new Date().getFullYear()}`,
                             align: "start",
                         },
                     },

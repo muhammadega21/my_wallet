@@ -297,8 +297,35 @@ class PurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Purchase $purchase)
+    public function destroy(Purchase $pembelian)
     {
-        //
+        if ($pembelian->wallet) {
+            $wallet = Wallet::where('id', $pembelian->wallet->id);
+            if ($pembelian->money_in) {
+                Purchase::destroy($pembelian->id);
+                $wallet->update([
+                    'money_total' => $pembelian->wallet->money_total - $pembelian->money_in
+                ]);
+            } else {
+                Purchase::destroy($pembelian->id);
+                $wallet->update([
+                    'money_total' => $pembelian->wallet->money_total + $pembelian->money_out
+                ]);
+            }
+        } else {
+            $rekening = Rekening::where('id', $pembelian->rekening->id);
+            if ($pembelian->money_in) {
+                Purchase::destroy($pembelian->id);
+                $rekening->update([
+                    'money_total' => $pembelian->rekening->money_total - $pembelian->money_in
+                ]);
+            } else {
+                Purchase::destroy($pembelian->id);
+                $rekening->update([
+                    'money_total' => $pembelian->rekening->money_total + $pembelian->money_out
+                ]);
+            }
+        }
+        return redirect('riwayat')->with('success', 'Berhasil Menghapus Riwayat');
     }
 }

@@ -163,6 +163,13 @@ $(document).ready(function () {
                     "http://localhost:8000/rekening/" +
                         card.find(".rekening_id").text()
                 );
+            popup
+                .find("#formDelete")
+                .attr(
+                    "action",
+                    "http://localhost:8000/rekening/" +
+                        card.find(".rekening_id").text()
+                );
             $(".close").click(function () {
                 $(".update-popup").removeClass("active");
             });
@@ -176,5 +183,27 @@ $(document).ready(function () {
         const saldo = $(this).text();
         const rp = saldo.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
         $(this).text("Rp " + rp + ",00");
+    });
+});
+
+// delete confirm
+document.querySelectorAll("#delete").forEach((button) => {
+    button.addEventListener("click", (e) => {
+        const form = e.target.closest("form");
+        e.preventDefault();
+        swal.fire({
+            title: "Konfirmasi",
+            text: "Yakin ingin menghapus?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus",
+            cancelButtonText: "Batal",
+        }).then(function (result) {
+            if (result.value) {
+                form.submit();
+            }
+        });
     });
 });

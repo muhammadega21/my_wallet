@@ -49,12 +49,12 @@ class Controller extends BaseController
             // money out
             $totalMoneyOut = Purchase::where('user_id', auth()->user()->id)
                 ->whereMonth('created_at', $month)
-                ->sum('money_in');
+                ->sum('money_out');
 
             // money in
             $totalMoneyIn = Purchase::where('user_id', auth()->user()->id)
                 ->whereMonth('created_at', $month)
-                ->sum('money_out');
+                ->sum('money_in');
 
             $money_out[] = [
                 $totalMoneyOut
@@ -64,5 +64,12 @@ class Controller extends BaseController
             ];
         }
         return response()->json(['money_out' => $money_out, 'money_in' => $money_in]);
+    }
+
+    public function profile()
+    {
+        return view('profile.index', [
+            'title' => 'Profile'
+        ]);
     }
 }

@@ -29,6 +29,9 @@ Route::post('/register', [LoginController::class, 'registerStore']);
 // Dashboard
 Route::get('/dashboard', [Controller::class, 'index'])->middleware('auth');
 
+// Profile
+Route::get('/profile', [Controller::class, 'profile'])->middleware('auth');
+
 // Wallet
 Route::resource('/wallet', WalletController::class)->middleware('auth');
 Route::get('/pembelian', [Controller::class, 'purchase'])->middleware('auth');

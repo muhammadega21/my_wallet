@@ -13,8 +13,7 @@
             <img src="{{ url('img/' . auth()->user()->img) }}" alt="image" />
         </div>
         <div class="dropdown">
-            <a href="">Setting</a>
-            <a href="">Profile</a>
+            <a href="{{ url('/profile') }}">Profile</a>
             <a href="{{ url('/logout') }}">Logout</a>
         </div>
     </div>

@@ -106,6 +106,7 @@ class RekeningController extends Controller
      */
     public function destroy(Rekening $rekening)
     {
-        //
+        Rekening::destroy($rekening->id);
+        return redirect('rekening')->with('success', 'Berhasil Menghapus Rekening');
     }
 }

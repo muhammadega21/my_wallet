@@ -46,8 +46,11 @@
                                                 @csrf
                                                 <button class="bg-orange-500"><i class="bx bxs-edit"></i></button>
                                             </form>
-                                            <form action="">
-                                                <button class="bg-red-500"><i class="bx bxs-trash"></i></button>
+                                            <form action="{{ url('pembelian/' . $riwayat->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button id="delete" class="bg-red-500"><i
+                                                        class="bx bxs-trash"></i></button>
                                             </form>
                                         </div>
                                     </td>
