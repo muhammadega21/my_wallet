@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('friendlist_id')->nullable();
             $table->string('name');
             $table->string('username');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->string('id_user');
             $table->string('password');
             $table->string('level')->default(2);

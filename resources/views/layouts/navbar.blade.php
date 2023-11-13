@@ -10,7 +10,11 @@
     </div>
     <div class="nav-right">
         <div class="img">
-            <img src="{{ url('img/' . auth()->user()->img) }}" alt="image" />
+            @if (auth()->user()->img == 'user.png')
+                <img src="{{ url('img/' . auth()->user()->img) }}" alt="image">
+            @else
+                <img src="{{ url(asset('storage/' . auth()->user()->img)) }}" alt="image">
+            @endif
         </div>
         <div class="dropdown">
             <a href="{{ url('/profile') }}">Profile</a>

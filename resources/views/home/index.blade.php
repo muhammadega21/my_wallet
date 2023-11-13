@@ -120,7 +120,7 @@
                 <div class="userList h-full w-full xl:w-[30%]">
                     <div class="title">
                         <h4>Daftar Teman</h4>
-                        <button>Tambah</button>
+                        <button class="addFriend-btn">Tambah</button>
                     </div>
                     <div class="list-wrapper grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1">
                         <a href="" class="list">
@@ -159,7 +159,7 @@
     </div>
     {{-- Popup --}}
     <div class="create-popup top-5 w-[calc(100%-50px)] md:w-[80%] lg:w-[50%]">
-        <div class="form-input">
+        <div class="form-input !shadow-none">
             <div class="title">
                 <h4>Update Dompet</h4>
             </div>
@@ -179,4 +179,35 @@
         </div>
     </div>
     {{-- Popup --}}
+
+    {{-- Add Friend Popup --}}
+    <div class="addFriend-popup !p-0 top-5 ">
+        <div class="form-input !shadow-none">
+            <div class="title">
+                <h4>Tambah Teman</h4>
+            </div>
+            <form action="">
+                <div class="form-input p-0 bg-none shadow-none">
+                    <div class="form-group flex items-center gap-1">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="input-box">
+                            <input id="friendUsername" class="username" type="text" name="username"
+                                placeholder="Username">
+                        </div>
+                        <div class="input-box">
+                            <input id="friendID" class="id_user" type="text" name="id_user" placeholder="#ID">
+                        </div>
+                    </div>
+                </div>
+                <div class="userList w-full my-4">
+                    <div class="list-wrapper friendList">
+                    </div>
+                </div>
+                <div class="btn flex justify-end">
+                    <button type="button" class="close bg-red-500">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {{-- Add Friend Popup --}}
 @endsection

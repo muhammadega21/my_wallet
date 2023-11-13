@@ -31,7 +31,7 @@ body {
     left: 0;
     top: 0;
     bottom: 0;
-    height: 100vh;
+    height: 100%;
     transition: var(--transition_2s);
 }
 
@@ -223,7 +223,8 @@ body {
 .sidebar.active .side-profile .img {
     margin-left: 20px;
     width: 45px;
-    min-width: 45px;
+    height: 45px;
+    overflow: hidden;
 }
 
 .sidebar .side-profile img {
@@ -294,6 +295,7 @@ body {
 .navbar .nav-right .img {
     cursor: pointer;
     width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -485,69 +487,6 @@ body {
     opacity: 0.9;
 }
 
-.content .content-body .bottom-content .userList .list-wrapper {
-    display: grid;
-    gap: 12px;
-}
-
-.content .content-body .bottom-content .userList .list {
-    width: 100%;
-    background-color: #fff;
-    padding: 10px 12px;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.1);
-    border-right: 3px solid var(--primary);
-    transition: var(--transition_2s);
-}
-
-.content .content-body .bottom-content .userList .list:hover {
-    transform: scale(1.01);
-}
-
-.content .content-body .bottom-content .userList .img {
-    width: 40px;
-    height: 40px;
-    overflow: hidden;
-    border-radius: 50%;
-}
-
-.content .content-body .bottom-content .userList img {
-    display: block;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.content .content-body .bottom-content .userList .userProfile {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.content .content-body .bottom-content .userList .userProfile span {
-    font-size: 12px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 2px;
-}
-
-.content .content-body .bottom-content .userList .userProfile span i {
-    font-size: 6px;
-}
-
-.content .content-body .bottom-content .userList .userProfile .online {
-    color: var(--softgreen);
-}
-
-.content .content-body .bottom-content .userList .userProfile .offline {
-    opacity: 0.6;
-}
-
 /* content */
 
 /* Form Input */
@@ -585,3 +524,75 @@ body {
 }
 
 /* Form Input */
+
+/* Profile */
+.profileWrapper {
+    display: flex;
+    height: 100%;
+    gap: 1rem;
+}
+
+.profileLeft {
+    height: 100%;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 18px 16px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profileLeft .profileImage .img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profileLeft .profileImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profileLeft .profileImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.profileLeft .profileInfo {
+    margin: 1rem 0;
+}
+
+.profileLeft .profileInfo h4 {
+    font-size: 16px;
+    font-weight: 700;
+    opacity: 0.9;
+}
+
+.profileLeft .profileInfo .profile {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 2px 0 6px 0;
+    font-size: 15px;
+}
+
+.profileLeft .profileInfo .profile th {
+    display: inline;
+    font-weight: 600;
+}
+
+.profileLeft .profileInfo .personal .profile tr td:nth-child(2) {
+    padding: 0 10px;
+}
+
+.profileLeft .profileInfo table {
+    margin-left: 10px;
+}
+
+.profileRight {
+    width: 100%;
+}
+
+/* Profile */

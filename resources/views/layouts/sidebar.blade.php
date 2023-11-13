@@ -13,7 +13,7 @@
     <div class="side-list">
         <ul>
             <span class="layout">MAIN</span>
-            <li class="{{ Request::is('/', 'dashboard') ? 'active' : '' }}">
+            <li class="{{ Request::is('/', 'dashboard', 'user*') ? 'active' : '' }}">
                 <a href="{{ url('dashboard') }}"><i class="bx bxs-dashboard"></i><span>Dashboard</span></a>
             </li>
             <div class="menu">
@@ -42,8 +42,8 @@
             <li>
                 <a href=""><i class="bx bxs-bell"></i><span>Pengingat</span></a>
             </li>
-            <li>
-                <a href=""><i class="bx bxs-group"></i><span>Daftar Teman</span></a>
+            <li class="{{ Request::is('friendlist*') ? 'active' : '' }}">
+                <a href="{{ url('friendlist') }}"><i class="bx bxs-group"></i><span>Daftar Teman</span></a>
             </li>
             <span class="layout">SETTING</span>
             <li class="{{ Request::is('profile*') ? 'active' : '' }}">
@@ -55,8 +55,12 @@
         </ul>
     </div>
     <div class="side-profile">
-        <div class="img w-[35px] sm:w-[45px] min-w-[35px] sm:min-w-[45px] ml-[10px] sm:ml-[20px]">
-            <img src="{{ url('img/' . auth()->user()->img) }}" alt="image" />
+        <div class="img w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] min-w-[35px] sm:min-w-[45px] ml-[10px] sm:ml-[20px]">
+            @if (auth()->user()->img == 'user.png')
+                <img src="{{ url('img/' . auth()->user()->img) }}" alt="image">
+            @else
+                <img src="{{ url(asset('storage/' . auth()->user()->img)) }}" alt="image">
+            @endif
         </div>
         <div class="profile-name opacity-0 sm:opacity-100 invisible sm:visible">
             <h4>{{ auth()->user()->name }}</h4>

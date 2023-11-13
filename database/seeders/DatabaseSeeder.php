@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             'id' => 1,
             'name' => 'Muhammad Ega Dermawan',
             'username' => 'ega',
+            'email' => 'dermawane988@gmail.com',
+            'phone' => '085763000486',
             'id_user' => '2108',
             'password' => bcrypt('password'),
             'level' => '1',

@@ -39,7 +39,7 @@
             </div>
             {{-- Add Popoup --}}
             <div class="create-popup w-full md:w-[80%] lg:w-[50%]">
-                <div class="form-input">
+                <div class="form-input !shadow-none ">
                     <div class="title">
                         <h4>Tambah Rekening</h4>
                     </div>
@@ -67,8 +67,8 @@
             </div>
             {{-- Add Popoup --}}
             {{-- Edit Popoup --}}
-            <div class="update-popup w-full md:w-[80%] lg:w-[50%]">
-                <div class="form-input">
+            <div class="update-popup  w-full md:w-[80%] lg:w-[50%]">
+                <div class="form-input !shadow-none !p-0">
                     <div class="title flex justify-between">
                         <h4>Update Rekening</h4>
                         <form id="formDelete" action="{{ url('') }}" method="POST">
@@ -84,7 +84,7 @@
                         @csrf
                         @method('put')
                         <input type="hidden" name="id" id="id">
-                        <div class="input-box">
+                        <div class="input-box ">
                             <label for="bank">Nama Rekening</label>
                             <input type="text" name="bank" id="bank" placeholder="Nama Rekening/E-Wallet">
                         </div>

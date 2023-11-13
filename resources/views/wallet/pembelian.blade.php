@@ -55,7 +55,7 @@
                         </div>
                         <div class="input-box rekening invisible @error('rekening_id') is-invalid @enderror">
                             <label class="required">Rekening</label>
-                            <select name="rekening_id" id="rekening_id" required>
+                            <select name="rekening_id" id="rekening_id">
                                 <option hidden></option>
                                 @foreach ($rekening as $rekening)
                                     <option value="{{ $rekening->id }}">{{ $rekening->bank }} - ({{ $rekening->number }})
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="btn flex justify-end mt-3 me-0 lg:me-3">
-                        <button class="bg-blue-500">Tambah</button>
+                        <button id="asd" class="bg-blue-500">Tambah</button>
                     </div>
                 </form>
             </div>

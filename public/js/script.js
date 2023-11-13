@@ -116,14 +116,17 @@ $(document).ready(function () {
     });
 });
 
+// Rekening
 $(document).on("change", "#metode", function (e) {
     const rekening = $(".rekening");
     if (this.options[e.target.selectedIndex].text != "Dompet") {
         rekening.removeClass("invisible");
+        $("#rekening_id").attr("required", true);
         $("#wallet_id").val("");
     } else {
         $("#wallet_id").val($("#wallet_value").val());
         if (!$(rekening).hasClass("invisible")) {
+            $("#rekening_id").attr("required", false);
             rekening.addClass("invisible");
         }
     }
@@ -135,6 +138,18 @@ $(document).ready(function () {
         $(".create-popup").addClass("active");
         $(".close").click(function () {
             $(".create-popup").removeClass("active");
+        });
+    });
+});
+
+// addFriend-popup
+$(document).ready(function () {
+    $(".addFriend-btn").click(function () {
+        $(".addFriend-popup").addClass("active");
+        $(".close").click(function () {
+            $(".addFriend-popup").removeClass("active");
+            $("#friendUsername").val("");
+            $("#friendID").val("");
         });
     });
 });
@@ -206,4 +221,47 @@ document.querySelectorAll("#delete").forEach((button) => {
             }
         });
     });
+});
+
+// img
+
+$(document).ready(function () {
+    $("#image").change(function () {
+        const imgPreview = $(".img-preview");
+        const uploadBtn = $("#btnUpload");
+        const updateBtn = $("#btnUpdate");
+        const oFReader = new FileReader();
+
+        oFReader.readAsDataURL(this.files[0]);
+
+        oFReader.onload = function (oFReader) {
+            imgPreview.attr("src", oFReader.target.result);
+            imgPreview.css("display", "block");
+            updateBtn.css("display", "block");
+        };
+    });
+});
+
+$(document).ready(function () {
+    $("#friendUsername" && "#friendID").on("keyup", function () {
+        let username = $("#friendUsername").val();
+        let id_user = $("#friendID").val();
+        $.ajax({
+            type: "get",
+            url: "search",
+            data: {
+                _token: $('input[name="_token"]').val(),
+                username: username,
+                id_user: id_user,
+            },
+            success: function (data) {
+                $(".friendList").html(data);
+            },
+        });
+    });
+});
+$.ajaxSetup({
+    headers: {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    },
 });

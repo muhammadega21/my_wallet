@@ -12,7 +12,9 @@ class FriendlistController extends Controller
      */
     public function index()
     {
-        //
+        return view('friendlist.index', [
+            'title' => "Daftar Teman"
+        ]);
     }
 
     /**
@@ -36,7 +38,7 @@ class FriendlistController extends Controller
      */
     public function show(Friendlist $friendlist)
     {
-        //
+        return $friendlist;
     }
 
     /**

@@ -14,40 +14,40 @@
     border-radius: 6px;
 }
 
-.content .content-body table {
+.content .content-body table:not(.profile, #friendlist) {
     width: 100%;
 }
 
-.content .content-body table thead {
+.content .content-body table:not(.profile, #friendlist) thead {
     background-color: var(--primary);
     color: #fff;
     font-weight: 600;
 }
 
-.content .content-body table thead tr,
-.content .content-body table thead td,
-.content .content-body table thead th,
-.content .content-body table tbody tr,
-.content .content-body table tbody th,
-.content .content-body table tbody td {
+.content .content-body table:not(.profile, #friendlist) thead tr,
+.content .content-body table:not(.profile, #friendlist) thead td,
+.content .content-body table:not(.profile, #friendlist) thead th,
+.content .content-body table:not(.profile, #friendlist) tbody tr,
+.content .content-body table:not(.profile, #friendlist) tbody th,
+.content .content-body table:not(.profile, #friendlist) tbody td {
     padding: 8px 12px;
     text-align: left;
     white-space: nowrap;
 }
 
-.content .content-body table thead tr,
-.content .content-body table thead td,
-.content .content-body table thead th {
+.content .content-body table:not(.profile, #friendlist) thead tr,
+.content .content-body table:not(.profile, #friendlist) thead td,
+.content .content-body table:not(.profile, #friendlist) thead th {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.content .content-body table tbody tr,
-.content .content-body table tbody th,
-.content .content-body table tbody td {
+.content .content-body table:not(.profile, #friendlist) tbody tr,
+.content .content-body table:not(.profile, #friendlist) tbody th,
+.content .content-body table:not(.profile, #friendlist) tbody td {
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.content .content-body table tbody tr:last-child {
+.content .content-body table:not(.profile, #friendlist) tbody tr:last-child {
     border-bottom: 2px solid var(--primary);
 }
 /* Table */
@@ -104,6 +104,18 @@
 /* Search-box */
 
 /* Form-input */
+.form-input {
+    background-color: #fff;
+    padding: 12px 16px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-input .title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .form-input .readonly {
     background-color: rgba(177, 177, 177, 0.2) !important;
     pointer-events: none !important;
@@ -134,8 +146,8 @@
     outline: none;
     border: none;
     font-size: 15px;
-    background-color: #fff;
-    border: 1px solid rgba(80, 80, 80, 0.1);
+    background-color: #fafafa;
+    border: 1px solid rgba(80, 80, 80, 0.2);
     padding: 5px 8px;
     border-radius: 3px;
     transition: var(--transition_1s);
@@ -152,7 +164,8 @@
     width: 100%;
     height: 32px;
     border-radius: 3px;
-    border: 1px solid rgba(80, 80, 80, 0.1);
+    background-color: #fafafa;
+    border: 1px solid rgba(80, 80, 80, 0.2);
 }
 
 .form-input .input-box select:hover {
@@ -216,7 +229,8 @@
 }
 
 .create-popup,
-.update-popup {
+.update-popup,
+.addFriend-popup {
     opacity: 0;
     pointer-events: none;
     background-color: #fff;
@@ -231,23 +245,232 @@
 }
 
 .create-popup .title,
-.update-popup .title {
+.update-popup .title,
+.addFriend-popup .title {
     font-weight: 600;
     font-size: 17px;
     margin-bottom: 12px;
 }
 
 .create-popup form,
-.update-popup form {
+.update-popup form,
+.addFriend-popup form {
     margin-left: 15px;
     font-size: 15px;
     font-weight: 600;
 }
 
 .create-popup.active,
-.update-popup.active {
+.update-popup.active,
+.addFriend-popup.active {
     opacity: 1;
     pointer-events: visible;
     transform: translateX(-50%) translateY(0);
 }
+
+.addFriend-popup .notfound {
+    text-align: center;
+    opacity: 0.7;
+    font-size: 16px;
+    font-weight: 600;
+}
 /* create popup */
+
+/* Upload file */
+.upload-file input[type="file"] {
+    display: none;
+}
+
+.upload-file {
+    margin-bottom: 5px;
+}
+
+.upload-file label {
+    color: #fff;
+    background-color: var(--orange);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    opacity: 1;
+    transform: scale(1);
+    transition: var(--transition_1s);
+}
+
+.upload-file label i {
+    font-size: 26px;
+    margin-right: 5px;
+}
+
+.upload-file label:hover {
+    opacity: 0.9;
+}
+
+.upload-file #btnUpdate {
+    display: none;
+}
+/* Upload file */
+
+/* User List */
+.userList .list-wrapper {
+    width: 100%;
+    display: grid;
+    gap: 12px;
+}
+
+.userList .list {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.1);
+    border-right: 3px solid var(--primary);
+    transition: var(--transition_2s);
+}
+
+.userList .list-wrapper #addFriend-list {
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.userList .list:hover {
+    transform: scale(1.01);
+}
+
+.userList .img {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.userList img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.userList .userProfile {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.userList .userProfile span {
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.userList .userProfile span i {
+    font-size: 6px;
+}
+
+.userList .userProfile .online {
+    color: var(--softgreen);
+}
+
+.userList .userProfile .offline {
+    opacity: 0.6;
+}
+/* User List */
+
+/* Friendlist */
+.content .content-body .friendlist {
+    width: 100%;
+}
+
+.content .content-body .friendlist span {
+    margin: auto 0;
+}
+
+.content .content-body .friendlist .top {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    text-align: left;
+    grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+.content .content-body .friendlist .bottom {
+}
+
+.content .content-body .friendlist .bottom .friendlist-card {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr;
+    margin: 10px 0;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(66, 66, 66, 0.2);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 8px 12px;
+    transition: var(--transition_1s);
+}
+
+.content .content-body .friendlist .bottom .friendlist-card:hover {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+}
+
+.content .content-body .friendlist .bottom .friendlist-card .action {
+    display: flex;
+}
+
+.content .content-body .friendlist .bottom .img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.content .content-body .friendlist .bottom .img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Friendlist */
+
+/* Status */
+.status {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.status.online {
+    color: var(--softgreen);
+}
+
+.status.offline {
+    opacity: 0.8;
+}
+
+.status i {
+    font-size: 8px;
+}
+/* Status */
