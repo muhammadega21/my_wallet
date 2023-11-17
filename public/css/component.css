@@ -188,6 +188,17 @@
 .btn button:hover {
     opacity: 0.9;
 }
+
+.btn .confirm {
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn .confirm i {
+    position: relative;
+    font-size: 20px;
+    font-weight: 700;
+}
 /* Button */
 
 /* Action Button */
@@ -420,7 +431,6 @@
     margin: 10px 0;
     border-radius: 6px;
     background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(66, 66, 66, 0.2);
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
     padding: 8px 12px;
     transition: var(--transition_1s);

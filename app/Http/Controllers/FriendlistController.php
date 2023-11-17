@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Friendlist;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FriendlistController extends Controller
@@ -28,9 +29,16 @@ class FriendlistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(User $user, $frienID)
     {
-        //
+        Friendlist::create([
+            'user_id' => $user->id,
+            'user_req' => $user->id,
+            'acceptor' => $frienID,
+            'status' => 'pending'
+        ]);
+
+        return back()->with('success', 'Berhasil Meminta Pertemanan');
     }
 
     /**

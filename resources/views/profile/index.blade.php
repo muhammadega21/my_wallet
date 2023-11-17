@@ -5,7 +5,7 @@
             <h1>Profile</h1>
         </div>
         <div class="content-body">
-            <div class="profileWrapper">
+            <div class="profileWrapper grid-cols-1 md:grid-cols-[minmax(255px,_auto)_11fr]">
                 <div class="profileLeft">
                     <form action="{{ url('profile/update/' . $user->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf

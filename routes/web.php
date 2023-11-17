@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FriendlistController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NotifController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RekeningController;
 use App\Http\Controllers\WalletController;
@@ -51,7 +52,11 @@ Route::get('/riwayat', [Controller::class, 'riwayat'])->middleware('auth');
 
 // Friendlist
 Route::resource('/friendlist', FriendlistController::class)->middleware('auth');
+Route::post('friendlist/{user}/{friendID}', [FriendlistController::class, 'store'])->middleware('auth');
 Route::get('user/{user:username}', [Controller::class, 'showUser'])->middleware('auth');
+
+// Notifikasi
+Route::get('notifikasi', [NotifController::class, 'notif'])->middleware('auth');
 
 // api
 Route::get('/api/wallet', [Controller::class, 'walletApi']);

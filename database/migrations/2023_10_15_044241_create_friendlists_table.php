@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('friendlists', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_req');
+            $table->foreignId('user_id');
             $table->integer('acceptor');
-            $table->integer('status');
+            $table->string('status');
             $table->timestamps();
         });
     }

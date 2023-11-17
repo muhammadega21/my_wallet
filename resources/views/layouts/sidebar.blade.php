@@ -40,7 +40,7 @@
                 </li>
             </div>
             <li>
-                <a href=""><i class="bx bxs-bell"></i><span>Pengingat</span></a>
+                <a href="{{ url('notifikasi') }}"><i class="bx bxs-bell"></i><span>Notifikasi</span></a>
             </li>
             <li class="{{ Request::is('friendlist*') ? 'active' : '' }}">
                 <a href="{{ url('friendlist') }}"><i class="bx bxs-group"></i><span>Daftar Teman</span></a>

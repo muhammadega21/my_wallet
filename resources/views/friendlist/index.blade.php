@@ -4,7 +4,7 @@
         <div class="content-title flex justify-between">
             <h4>Daftar Teman</h4>
             <div class="btn">
-                <button class="bg-blue-500">Tambah</button>
+                <button class="bg-blue-500 addFriend-btn">Tambah</button>
             </div>
         </div>
         <div class="content-body">
@@ -42,4 +42,35 @@
             </div>
         </div>
     </div>
+
+    {{-- Add Friend Popup --}}
+    <div class="addFriend-popup !p-0 top-5 ">
+        <div class="form-input !shadow-none">
+            <div class="title">
+                <h4>Tambah Teman</h4>
+            </div>
+            <form action="">
+                <div class="form-input p-0 bg-none shadow-none">
+                    <div class="form-group flex items-center gap-1">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="input-box">
+                            <input id="friendUsername" class="username" type="text" name="username"
+                                placeholder="Username">
+                        </div>
+                        <div class="input-box">
+                            <input id="friendID" class="id_user" type="text" name="id_user" placeholder="#ID">
+                        </div>
+                    </div>
+                </div>
+                <div class="userList w-full my-4">
+                    <div class="list-wrapper friendList">
+                    </div>
+                </div>
+                <div class="btn flex justify-end">
+                    <button type="button" class="close bg-red-500">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {{-- Add Friend Popup --}}
 @endsection

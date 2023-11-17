@@ -9,9 +9,10 @@ class Friendlist extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $with = ['user'];
 
     public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

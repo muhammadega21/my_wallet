@@ -224,11 +224,9 @@ document.querySelectorAll("#delete").forEach((button) => {
 });
 
 // img
-
 $(document).ready(function () {
     $("#image").change(function () {
         const imgPreview = $(".img-preview");
-        const uploadBtn = $("#btnUpload");
         const updateBtn = $("#btnUpdate");
         const oFReader = new FileReader();
 
@@ -242,6 +240,7 @@ $(document).ready(function () {
     });
 });
 
+// search friend
 $(document).ready(function () {
     $("#friendUsername" && "#friendID").on("keyup", function () {
         let username = $("#friendUsername").val();

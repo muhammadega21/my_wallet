@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = ['id', 'friendlist_id', 'name', 'username', 'id_user', 'password', 'level', 'img'];
-    protected $with = ['friendlist', 'purchase'];
+    protected $with = ['purchase'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function friendlist()
     {
-        return $this->belongsTo(Friendlist::class);
+        return $this->hasMany(Friendlist::class);
     }
 
     public function wallet()

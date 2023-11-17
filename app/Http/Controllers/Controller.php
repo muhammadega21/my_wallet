@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friendlist;
 use App\Models\Purchase;
 use App\Models\Rekening;
 use App\Models\User;
@@ -43,22 +44,26 @@ class Controller extends BaseController
 
             $data = User::where('username', $username)->where('id_user', $id_user)->get();
             if (count($data) > 0) {
-                foreach ($data as $user) {
-                    $output .= '<a id="addFriend-list" href="' . url('user/' . $user->username) . '" class="list">
-                            <div class="img">';
+                if ($username == auth()->user()->username && $id_user == auth()->user()->id_user) {
+                    $output = '<span class="notfound">Username dan ID User Yang Anda Masukkan Salah!</span>';
+                } else {
+                    foreach ($data as $user) {
+                        $output .= '<a id="addFriend-list" href="' . url('user/' . $user->username) . '" class="list">
+                                    <div class="img">';
 
-                    if ($user->img == "user.png") {
-                        $output .= '<img src="' . url("img/" . $user->img) . '" alt="image">';
-                    } else {
-                        $output .= '<img src="' . url(asset("storage/" . $user->img)) . '" alt="image">';
+                        if ($user->img == "user.png") {
+                            $output .= '<img src="' . url("img/" . $user->img) . '" alt="image">';
+                        } else {
+                            $output .= '<img src="' . url(asset("storage/" . $user->img)) . '" alt="image">';
+                        }
+
+                        $output .= '</div>
+                                    <div class="userProfile">
+                                        <h4>' . $user->name . '</h4>
+                                        <span class="online"><i class="bx bxs-circle"></i>Online</span>
+                                    </div>
+                                </a>';
                     }
-
-                    $output .= '</div>
-                            <div class="userProfile">
-                                <h4>' . $user->name . '</h4>
-                                <span class="online"><i class="bx bxs-circle"></i>Online</span>
-                            </div>
-                        </a>';
                 }
             } else {
                 $output = '<span class="notfound">Sedang Mencari...</span>';
@@ -189,9 +194,13 @@ class Controller extends BaseController
 
     public function showUser(User $user)
     {
+        $user_req = Friendlist::where('user_id', auth()->user()->id)->where('acceptor', $user->id)->first();
+        $user_friendlist = Friendlist::where('acceptor', auth()->user()->id)->first();
         return view('home.showUser', [
             'title' => 'User',
             'user' => $user,
+            'user_req' => $user_req,
+            'user_friendlist' => $user_friendlist,
             'rekening' => Rekening::where('user_id', $user->id)->get()->sortBy('created_at'),
             'wallet' => Wallet::where('user_id', $user->id)->sum('money_total'),
             'riwayat' => Purchase::where('user_id', $user->id)->get(),

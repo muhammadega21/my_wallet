@@ -5,7 +5,7 @@
             <h1>User</h1>
         </div>
         <div class="content-body">
-            <div class="profileWrapper">
+            <div class="profileWrapper grid-cols-1 md:grid-cols-[minmax(255px,_auto)_11fr]">
                 <div class="profileLeft">
                     <div class="profileImage">
                         <div class="img">
@@ -52,20 +52,39 @@
                                 <tr>
                                     <th>Wallet</th>
                                     <td>:</td>
-                                    <td class="italic opacity-70">Disembunyikan</td>
+                                    <td class="hiddenText">Disembunyikan</td>
                                 </tr>
                                 <tr>
                                     <th>Rekening</th>
                                     <td>:</td>
-                                    <td class="italic opacity-70">Disembunyikan</td>
+                                    <td class="hiddenText">Disembunyikan</td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-                    <div class="btn flex justify-end">
-                        <form action="">
-                            <button id="delete" class="bg-blue-500">Tambah Teman</button>
-                        </form>
+                    <div class="btn flex justify-end gap-1">
+                        @if ($user_friendlist)
+                            <form action="">
+                                <button class="bg-blue-500 confirm">Terima<i class="bx bx-check"></i></button>
+                            </form>
+                            <form action="">
+                                <button class="bg-red-500 confirm">Tolak<i class="bx bx-x top-[1px]"></i></button>
+                            </form>
+                        @else
+                            <form action="{{ url('friendlist/' . auth()->user()->id . '/' . $user->id) }}" method="POST">
+                                @csrf
+                                @method('post')
+                                @if ($user_req)
+                                    @if ($user_req->status == 'pending')
+                                        <button type="button" class="bg-orange-500">Menunggu</button>
+                                    @elseif ($user_req->status == 'accept')
+                                        <button type="button" class="bg-green-500">Berteman</button>
+                                    @endif
+                                @else
+                                    <button class="bg-blue-500">Tambah Teman</button>
+                                @endif
+                            </form>
+                        @endif
                     </div>
                 </div>
                 <div class="profileRight">
