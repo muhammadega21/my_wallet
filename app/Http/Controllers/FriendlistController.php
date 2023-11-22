@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Friendlist;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class FriendlistController extends Controller
     public function index()
     {
         return view('friendlist.index', [
-            'title' => "Daftar Teman"
+            'title' => "Daftar Teman",
+            'friendlist' => Friendlist::where('user_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -31,14 +33,7 @@ class FriendlistController extends Controller
      */
     public function store(User $user, $frienID)
     {
-        Friendlist::create([
-            'user_id' => $user->id,
-            'user_req' => $user->id,
-            'acceptor' => $frienID,
-            'status' => 'pending'
-        ]);
-
-        return back()->with('success', 'Berhasil Meminta Pertemanan');
+        //
     }
 
     /**
@@ -46,7 +41,7 @@ class FriendlistController extends Controller
      */
     public function show(Friendlist $friendlist)
     {
-        return $friendlist;
+        //
     }
 
     /**
@@ -68,8 +63,14 @@ class FriendlistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Friendlist $friendlist)
+    public function destroy(Friendlist $friendlist, Notification $notif)
     {
-        //
+        $nextFriend = $friendlist->id - 1;
+
+        Friendlist::destroy($friendlist->id);
+        Friendlist::destroy($nextFriend);
+        Notification::destroy($notif->id);
+
+        return redirect('friendlist')->with('success', 'Berhasil Menghapus Pertemanan');
     }
 }

@@ -44,6 +44,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Friendlist::class);
     }
+    public function notif()
+    {
+        return $this->hasMany(Notification::class);
+    }
 
     public function wallet()
     {

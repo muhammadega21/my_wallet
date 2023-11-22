@@ -13,7 +13,7 @@
     <div class="side-list">
         <ul>
             <span class="layout">MAIN</span>
-            <li class="{{ Request::is('/', 'dashboard', 'user*') ? 'active' : '' }}">
+            <li class="{{ Request::is('/', 'dashboard') ? 'active' : '' }}">
                 <a href="{{ url('dashboard') }}"><i class="bx bxs-dashboard"></i><span>Dashboard</span></a>
             </li>
             <div class="menu">
@@ -39,10 +39,10 @@
                     </ul>
                 </li>
             </div>
-            <li>
-                <a href="{{ url('notifikasi') }}"><i class="bx bxs-bell"></i><span>Notifikasi</span></a>
+            <li class="{{ Request::is('notification*') ? 'active' : '' }}">
+                <a href="{{ url('notification') }}"><i class="bx bxs-bell"></i><span>Notifikasi</span></a>
             </li>
-            <li class="{{ Request::is('friendlist*') ? 'active' : '' }}">
+            <li class="{{ Request::is('friendlist*', 'user*') ? 'active' : '' }}">
                 <a href="{{ url('friendlist') }}"><i class="bx bxs-group"></i><span>Daftar Teman</span></a>
             </li>
             <span class="layout">SETTING</span>

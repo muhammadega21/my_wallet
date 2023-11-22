@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Friendlist;
+use App\Models\Notification;
 use App\Models\Purchase;
 use App\Models\Rekening;
 use App\Models\User;
@@ -32,6 +33,7 @@ class Controller extends BaseController
             'rekening' => $rekening->sum('money_total'),
             'riwayat' => Purchase::where('user_id', auth()->user()->id)->get(),
             'pengeluaran' => $pengeluaran->sum('money_out'),
+            'friendlist' => Friendlist::where('user_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -194,8 +196,8 @@ class Controller extends BaseController
 
     public function showUser(User $user)
     {
-        $user_req = Friendlist::where('user_id', auth()->user()->id)->where('acceptor', $user->id)->first();
-        $user_friendlist = Friendlist::where('acceptor', auth()->user()->id)->first();
+        $user_req = Notification::where('user_id', auth()->user()->id)->where('acceptor', $user->id)->latest('created_at')->first();
+        $user_friendlist = Notification::where('acceptor', auth()->user()->id)->where('user_id', $user->id)->latest('created_at')->first();
         return view('home.showUser', [
             'title' => 'User',
             'user' => $user,
@@ -203,6 +205,7 @@ class Controller extends BaseController
             'user_friendlist' => $user_friendlist,
             'rekening' => Rekening::where('user_id', $user->id)->get()->sortBy('created_at'),
             'wallet' => Wallet::where('user_id', $user->id)->sum('money_total'),
+            'rekeningTotal' => Rekening::where('user_id', $user->id)->sum('money_total'),
             'riwayat' => Purchase::where('user_id', $user->id)->get(),
         ]);
     }

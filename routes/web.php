@@ -4,9 +4,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\FriendlistController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotifController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RekeningController;
 use App\Http\Controllers\WalletController;
+use App\Models\Friendlist;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,11 +55,11 @@ Route::get('/riwayat', [Controller::class, 'riwayat'])->middleware('auth');
 
 // Friendlist
 Route::resource('/friendlist', FriendlistController::class)->middleware('auth');
-Route::post('friendlist/{user}/{friendID}', [FriendlistController::class, 'store'])->middleware('auth');
+Route::get('friendlist/{friendlist}/{notif}', [FriendlistController::class, 'destroy'])->middleware('auth');
 Route::get('user/{user:username}', [Controller::class, 'showUser'])->middleware('auth');
 
 // Notifikasi
-Route::get('notifikasi', [NotifController::class, 'notif'])->middleware('auth');
-
+Route::resource('/notification', NotificationController::class)->middleware('auth');
+Route::post('notification/{user}/{friendID}', [NotificationController::class, 'store'])->middleware('auth');
 // api
 Route::get('/api/wallet', [Controller::class, 'walletApi']);

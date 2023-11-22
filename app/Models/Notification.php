@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Friendlist extends Model
+class Notification extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $with = ['user', 'notif'];
+    protected $with = ['user'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
-    public function notif()
+    public function friendlist()
     {
-        return $this->belongsTo(Notification::class);
+        return $this->hasMany(Friendlist::class);
     }
 }

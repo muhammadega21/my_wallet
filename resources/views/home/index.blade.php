@@ -123,35 +123,24 @@
                         <button class="addFriend-btn">Tambah</button>
                     </div>
                     <div class="list-wrapper grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1">
-                        <a href="" class="list">
-                            <div class="img">
-                                <img src="img/kazuma.jpg" alt="image" />
-                            </div>
-                            <div class="userProfile">
-                                <h4>Muhammad Ega Dermawan</h4>
-                                <span class="online"><i class="bx bxs-circle"></i>Online</span>
-                            </div>
-                        </a>
-                        <a href="" class="list">
-                            <div class="img">
-                                <img src="img/user.png" alt="image" />
-                            </div>
-                            <div class="userProfile">
-                                <h4>Ega Dermawan</h4>
-                                <span class="offline"><i class="bx bxs-circle"></i>Offline (last seen - 25
-                                    minute ago)</span>
-                            </div>
-                        </a>
-                        <a href="" class="list">
-                            <div class="img">
-                                <img src="img/user.png" alt="image" />
-                            </div>
-                            <div class="userProfile">
-                                <h4>Ega Dermawan</h4>
-                                <span class="offline"><i class="bx bxs-circle"></i>Offline (last seen - 25
-                                    minute ago)</span>
-                            </div>
-                        </a>
+                        @foreach ($friendlist as $friendlist)
+                            @php
+                                $friend = \App\Models\User::find($friendlist->friend);
+                            @endphp
+                            <a href="{{ url('user/' . $friend->username) }}" class="list">
+                                <div class="img">
+                                    @if ($friend->img == 'user.png')
+                                        <img src="{{ url('img/' . $friend->img) }}" alt="image">
+                                    @else
+                                        <img src="{{ url(asset('storage/' . $friend->img)) }}" alt="image">
+                                    @endif
+                                </div>
+                                <div class="userProfile">
+                                    <h4>{{ $friend->name }}</h4>
+                                    <span class="online"><i class="bx bxs-circle"></i>Online</span>
+                                </div>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
