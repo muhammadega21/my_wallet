@@ -87,8 +87,11 @@
                 </div>
             </div>
             <div class="bottom-content flex-col xl:flex-row">
-                <div class="table-wrapper w-full xl:w-[70%]">
-                    <div class="title">Riwayat Pembelian</div>
+                <div class="table-wrapper w-full overflow-x-auto xl:w-[70%]">
+                    <div class="title">
+                        <h4>Riwayat Pembelian</h4>
+                        <a class="badge-btn" href="{{ url('riwayat') }}">Lainnya</a>
+                    </div>
                     <div class="table">
                         <table>
                             <thead>
@@ -120,7 +123,7 @@
                 <div class="userList h-full w-full xl:w-[30%]">
                     <div class="title">
                         <h4>Daftar Teman</h4>
-                        <button class="addFriend-btn">Tambah</button>
+                        <button class="addFriend-btn badge-btn">Tambah</button>
                     </div>
                     <div class="list-wrapper grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1">
                         @foreach ($friendlist as $friendlist)
@@ -137,7 +140,11 @@
                                 </div>
                                 <div class="userProfile">
                                     <h4>{{ $friend->name }}</h4>
-                                    <span class="online"><i class="bx bxs-circle"></i>Online</span>
+                                    @if ($friend->is_online >= now()->subMinutes(2))
+                                        <span class="online"><i class="bx bxs-circle"></i>Online</span>
+                                    @else
+                                        <span class="offline"><i class="bx bxs-circle"></i>Offline</span>
+                                    @endif
                                 </div>
                             </a>
                         @endforeach
@@ -170,14 +177,14 @@
     {{-- Popup --}}
 
     {{-- Add Friend Popup --}}
-    <div class="addFriend-popup !p-0 top-5 ">
+    <div class="addFriend-popup !p-0 top-auto bottom-[10%] xl:bottom-auto xl:top-5 w-[80%] lg:w-auto">
         <div class="form-input !shadow-none">
             <div class="title">
                 <h4>Tambah Teman</h4>
             </div>
             <form action="">
                 <div class="form-input p-0 bg-none shadow-none">
-                    <div class="form-group flex items-center gap-1">
+                    <div class="form-group flex flex-col lg:flex-row items-center gap-1">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="input-box">
                             <input id="friendUsername" class="username" type="text" name="username"

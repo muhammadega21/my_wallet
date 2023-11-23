@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('item_total');
             $table->string('money_in');
             $table->string('money_out');
-            $table->string('desc')->nullable();
             $table->timestamps();
         });
     }

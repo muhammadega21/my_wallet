@@ -64,12 +64,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group flex-wrap lg:flex-nowrap">
-                        <div class="input-box @error('desc') is-invalid @enderror">
-                            <label class="required">Deskripsi</label>
-                            <textarea name="desc" id="desc"></textarea>
-                        </div>
-                    </div>
                     <div class="btn flex justify-end mt-3 me-0 lg:me-3">
                         <button id="asd" class="bg-blue-500">Tambah</button>
                     </div>

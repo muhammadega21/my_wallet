@@ -2,7 +2,6 @@
 .content .content-body .table-wrapper {
     height: 100%;
     position: relative;
-    overflow-x: auto;
 }
 
 .content .content-body .table {
@@ -49,6 +48,19 @@
 
 .content .content-body table:not(.profile, #friendlist) tbody tr:last-child {
     border-bottom: 2px solid var(--primary);
+}
+
+.badge-btn {
+    font-size: 14px;
+    background-color: var(--primary);
+    color: #fff;
+    padding: 0 8px;
+    border-radius: 4px;
+    transition: var(--transition_2s);
+}
+
+.badge-btn:hover {
+    opacity: 0.9;
 }
 /* Table */
 
@@ -399,8 +411,14 @@
 /* User List */
 
 /* Friendlist */
+.content .content-body .friendlist-wrapper {
+    position: relative;
+    /* width: 100%; */
+}
+
 .content .content-body .friendlist {
     width: 100%;
+    min-width: 850px;
 }
 
 .content .content-body .friendlist span {
@@ -449,6 +467,7 @@
 
 .content .content-body .friendlist .bottom .img {
     width: 40px;
+    min-width: 40px;
     height: 40px;
     border-radius: 50%;
     overflow: hidden;

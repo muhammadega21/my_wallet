@@ -9,9 +9,9 @@
                 <button class="add-popup">Tambah Rekening</button>
             </div>
             <div class="rekening">
-                <div class="cards">
+                <div class="cards ">
                     @foreach ($rekening as $rekening)
-                        <a href="#" class="card">
+                        <a href="#" class="card ">
                             <p class="hidden rekening_id">{{ $rekening->id }}</p>
                             <div class="card-body w-full">
                                 <div class="body-top">

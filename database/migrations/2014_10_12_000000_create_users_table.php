@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('level')->default(2);
             $table->string('img')->default('user.png');
             $table->rememberToken();
+            $table->timestamp('is_online')->nullable();
             $table->timestamps();
         });
     }

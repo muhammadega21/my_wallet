@@ -74,7 +74,8 @@
                                         </div>
                                         <div class="flex flex-col leading-5">
                                             <h4>{{ $acceptorUser->name }}</h4>
-                                            <p><span class="font-bold">Note : </span>Meminta Pertemanan Kepada Anda</p>
+                                            <p><span class="font-bold">Note : </span>Meminta Pertemanan Kepada
+                                                {{ $acceptorUser->name }}</p>
                                         </div>
 
                                     </div>

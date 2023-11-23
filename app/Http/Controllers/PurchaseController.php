@@ -91,7 +91,6 @@ class PurchaseController extends Controller
             'item_total' => $request->input('item_total'),
             'money_in' => $request->input('status') === "money_in" ? $request->input('item_total') : '',
             'money_out' => $request->input('status') === "money_out" ? $request->input('item_total') : '',
-            'desc' => $request['desc'],
         ]);
 
         return redirect('/pembelian')->with('success', 'Berhail Melakukan Pembelian');
@@ -288,7 +287,6 @@ class PurchaseController extends Controller
                 'item_total' => $request->input('item_total'),
                 'money_in' => $request->input('status') === "money_in" ? $request->input('item_total') : '',
                 'money_out' => $request->input('status') === "money_out" ? $request->input('item_total') : '',
-                'desc' => $request->input('desc'),
             ]);
 
         return redirect('/riwayat')->with('success', 'Berhail Update Pembelian');

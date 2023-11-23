@@ -51,6 +51,10 @@
             .content .content-body .rekening .cards {
                 @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
             }
+
+            .friend_request .card-request a .left {
+                @apply flex flex-col items-start lg:flex-row justify-between lg:items-center gap-[1rem]
+            }
         }
     </style>
     {{-- tailwind style --}}

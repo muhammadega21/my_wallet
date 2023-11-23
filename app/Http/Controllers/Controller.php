@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Storage;
 
 class Controller extends BaseController
@@ -31,9 +32,9 @@ class Controller extends BaseController
             'wallet' => $wallet->sum('money_total'),
             'my_wallet' => Wallet::find(auth()->user()->id),
             'rekening' => $rekening->sum('money_total'),
-            'riwayat' => Purchase::where('user_id', auth()->user()->id)->get(),
+            'riwayat' => Purchase::where('user_id', auth()->user()->id)->get()->take(10),
             'pengeluaran' => $pengeluaran->sum('money_out'),
-            'friendlist' => Friendlist::where('user_id', auth()->user()->id)->get()
+            'friendlist' => Friendlist::where('user_id', auth()->user()->id)->get()->take(5)
         ]);
     }
 
@@ -61,9 +62,13 @@ class Controller extends BaseController
 
                         $output .= '</div>
                                     <div class="userProfile">
-                                        <h4>' . $user->name . '</h4>
-                                        <span class="online"><i class="bx bxs-circle"></i>Online</span>
-                                    </div>
+                                        <h4>' . $user->name . '</h4>';
+                        if ($user->is_online >= now()->subMinutes(2)) {
+                            $output .= '<span class="online"><i class="bx bxs-circle"></i>Online</span>';
+                        } else {
+                            $output .= '<span class="offline"><i class="bx bxs-circle"></i>Offline</span>';
+                        }
+                        $output .= '</div>
                                 </a>';
                     }
                 }
@@ -76,9 +81,10 @@ class Controller extends BaseController
 
     public function riwayat()
     {
+        Paginator::defaultView('paginator');
         return view('wallet.riwayat', [
             'title' => 'Riwayat Pembelian',
-            'riwayat' => Purchase::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get()
+            'riwayats' => Purchase::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(20)
         ]);
     }
 
@@ -198,6 +204,9 @@ class Controller extends BaseController
     {
         $user_req = Notification::where('user_id', auth()->user()->id)->where('acceptor', $user->id)->latest('created_at')->first();
         $user_friendlist = Notification::where('acceptor', auth()->user()->id)->where('user_id', $user->id)->latest('created_at')->first();
+
+        Paginator::defaultView('paginator');
+
         return view('home.showUser', [
             'title' => 'User',
             'user' => $user,
@@ -206,7 +215,7 @@ class Controller extends BaseController
             'rekening' => Rekening::where('user_id', $user->id)->get()->sortBy('created_at'),
             'wallet' => Wallet::where('user_id', $user->id)->sum('money_total'),
             'rekeningTotal' => Rekening::where('user_id', $user->id)->sum('money_total'),
-            'riwayat' => Purchase::where('user_id', $user->id)->get(),
+            'riwayats' => Purchase::where('user_id', $user->id)->paginate(6),
         ]);
     }
 }

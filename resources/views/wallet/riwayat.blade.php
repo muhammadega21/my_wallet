@@ -12,7 +12,7 @@
                     <button>Search</button>
                 </form>
             </div>
-            <div class="table-wrapper w-full">
+            <div class="table-wrapper w-full overflow-x-auto">
                 <div class="table">
                     <table>
                         <thead>
@@ -29,14 +29,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($riwayat as $riwayat)
+                            @foreach ($riwayats as $riwayat)
                                 <tr>
                                     <th>{{ $loop->iteration }}</th>
                                     <td class="!whitespace-normal">{{ $riwayat->item_name }}</td>
                                     <td class="saldo">{{ $riwayat->item_price }}</td>
                                     <td>{{ $riwayat->item_qty }}</td>
                                     <td class="saldo">{{ $riwayat->item_total }}</td>
-                                    <td class="{{ $riwayat->money_out ? 'text-orange-500' : '' }}">
+                                    <td class="{{ $riwayat->money_out ? 'text-orange-500' : 'text-green-500' }}">
                                         {{ $riwayat->money_in ? 'Uang Bertambah' : 'Pembelian' }}</td>
                                     <td>{{ $riwayat->wallet_id ? 'Dompet' : $riwayat->rekening->bank }}</td>
                                     <td>{{ $riwayat->created_at->translatedFormat('d F, Y') }}</td>
@@ -59,6 +59,9 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="pagination mt-3">
+                {{ $riwayats->links() }}
             </div>
         </div>
     </div>
